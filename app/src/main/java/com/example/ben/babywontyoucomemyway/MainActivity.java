@@ -65,6 +65,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        stopAudio();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        // Have to actually call stop() on the MediaPlayers
+        babyPlayer.stop();
+        spawPlayer.stop();
+        gawdamPlayer.stop();
+
+        // Have to release all instances of MediaPlayer
+        babyPlayer.release();
+        spawPlayer.release();
+        gawdamPlayer.release();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -91,22 +120,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void playBabyWontYouComeMyWay()
     {
-        Toast.makeText(this, "Baby Won't You Come My Waaaaaay????1", Toast.LENGTH_SHORT).show();
+        stopAudio();
+        babyPlayer.seekTo(0);
+        babyPlayer.start();
     }
 
     public void playSpaw()
     {
-        Toast.makeText(this, "SPAW!!", Toast.LENGTH_SHORT).show();
+        stopAudio();
+        spawPlayer.seekTo(0);
+        spawPlayer.start();
     }
 
     public void playGawdam()
     {
-        Toast.makeText(this, "gawdam-gawdam", Toast.LENGTH_SHORT).show();
+        stopAudio();
+        gawdamPlayer.seekTo(0);
+        gawdamPlayer.start();
     }
 
     public void stopAudio()
     {
-        Toast.makeText(this, "STOP", Toast.LENGTH_SHORT).show();
+        if (babyPlayer.isPlaying())
+        {
+            babyPlayer.pause();
+        }
+        if (spawPlayer.isPlaying())
+        {
+            spawPlayer.pause();
+        }
+        if (gawdamPlayer.isPlaying())
+        {
+            gawdamPlayer.pause();
+        }
     }
 
     @Override
