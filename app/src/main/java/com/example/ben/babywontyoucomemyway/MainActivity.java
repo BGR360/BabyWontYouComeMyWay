@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
 
     Button babyButton, spawButton, gawdamButton, stopButton;
+    SoundPlayer babyPlayer, spawPlayer, gawdamPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spawButton.setOnClickListener(this);
         gawdamButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
+
+        babyPlayer = new SoundPlayer(this, R.raw.baby);
+        spawPlayer = new SoundPlayer(this, R.raw.SPAW);
+        gawdamPlayer = new SoundPlayer(this, R.raw.gawdam_gawdam);
     }
 
     @Override
