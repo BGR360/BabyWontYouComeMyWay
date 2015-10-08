@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                                MediaPlayer.OnPreparedListener
 {
 
-    Button babyButton, spawButton, gawdamButton, stopButton;
-    SoundPlayer babyPlayer, spawPlayer, gawdamPlayer;
+    Button babyButton, wantToSayButton, spawButton, gawdamButton, stopButton;
+    SoundPlayer babyPlayer, wantToSayPlayer, spawPlayer, gawdamPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,22 +44,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         */
 
         babyButton = (Button) findViewById(R.id.baby_button);
+        wantToSayButton = (Button) findViewById(R.id.want_to_say_button);
         spawButton = (Button) findViewById(R.id.spaw_button);
         gawdamButton = (Button) findViewById(R.id.gawdam_button);
         stopButton = (Button) findViewById(R.id.stop_button);
 
         babyButton.setOnClickListener(this);
+        wantToSayButton.setOnClickListener(this);
         spawButton.setOnClickListener(this);
         gawdamButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
 
         // Don't let them click until the media is loaded
         babyButton.setClickable(false);
+        wantToSayButton.setClickable(false);
         spawButton.setClickable(false);
         gawdamButton.setClickable(false);
         stopButton.setClickable(false);
 
         babyPlayer = new SoundPlayer(this, R.raw.baby, this);
+        wantToSayPlayer = new SoundPlayer(this, R.raw.want_to_say, this);
         spawPlayer = new SoundPlayer(this, R.raw.spaw, this);
         gawdamPlayer = new SoundPlayer(this, R.raw.gawdam_gawdam, this);
     }
@@ -84,11 +88,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Have to actually call stop() on the MediaPlayers
         babyPlayer.stop();
+        wantToSayPlayer.stop();
         spawPlayer.stop();
         gawdamPlayer.stop();
 
         // Have to release all instances of MediaPlayer
         babyPlayer.release();
+        wantToSayPlayer.release();
         spawPlayer.release();
         gawdamPlayer.release();
     }
@@ -125,6 +131,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         babyPlayer.start();
     }
 
+    public void playGotSomethingIWantToSay()
+    {
+        stopAudio();
+        wantToSayPlayer.seekTo(0);
+        wantToSayPlayer.start();
+    }
+
     public void playSpaw()
     {
         stopAudio();
@@ -145,6 +158,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             babyPlayer.pause();
         }
+        if (wantToSayPlayer.isPlaying())
+        {
+            wantToSayPlayer.pause();
+        }
         if (spawPlayer.isPlaying())
         {
             spawPlayer.pause();
@@ -163,6 +180,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (v == babyButton)
             {
                 playBabyWontYouComeMyWay();
+            }
+            else if (v == wantToSayButton)
+            {
+                playGotSomethingIWantToSay();
             }
             else if (v == spawButton)
             {
@@ -185,6 +206,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mp == babyPlayer)
         {
             babyButton.setClickable(true);
+        }
+        else if (mp == wantToSayPlayer)
+        {
+            wantToSayButton.setClickable(true);
         }
         else if (mp == spawPlayer)
         {

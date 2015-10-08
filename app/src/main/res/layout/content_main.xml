@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:text="@string/spaw_button_text"
         android:id="@+id/spaw_button"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/baby_button"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/want_to_say_button"
         android:layout_centerHorizontal="true"/>
 
     <Button
@@ -37,16 +37,25 @@
         android:layout_height="wrap_content"
         android:text="@string/gawdam_button_text"
         android:id="@+id/gawdam_button"
-        android:layout_marginTop="48dp"
         android:layout_below="@+id/spaw_button"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stop_button_text"
         android:id="@+id/stop_button"
-        android:layout_marginTop="72dp"
-        android:layout_below="@+id/gawdam_button"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="84dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Got Something I Want to Saaaaay"
+        android:id="@+id/want_to_say_button"
+        android:layout_below="@+id/baby_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"/>
 </RelativeLayout>
