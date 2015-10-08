@@ -17,8 +17,26 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Baby Won&apos;t You Come My Waaaay"
+        android:text="@string/baby_button_text"
         android:id="@+id/baby_button"
+        android:layout_marginTop="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/spaw_button_text"
+        android:id="@+id/spaw_button"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/baby_button"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gawdam_button_text"
+        android:id="@+id/gawdam_button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
