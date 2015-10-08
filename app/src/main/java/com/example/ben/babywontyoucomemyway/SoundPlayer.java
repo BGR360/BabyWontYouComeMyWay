@@ -1,9 +1,11 @@
 package com.example.ben.babywontyoucomemyway;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.support.annotation.IdRes;
 import android.widget.Toast;
 
@@ -41,7 +43,14 @@ public class SoundPlayer extends MediaPlayer implements MediaPlayer.OnErrorListe
             AssetFileDescriptor afd = res.openRawResourceFd(resId);
             if (afd == null)
             {
-                onError(this, MEDIA_ERROR_UNKNOWN, MEDIA_ERROR_IO);
+                if (Build.VERSION.SDK_INT >= 17)
+                {
+                    onError(this, MEDIA_ERROR_UNKNOWN, MEDIA_ERROR_IO);
+                }
+                else
+                {
+                    onError(this, MEDIA_ERROR_UNKNOWN, 0);
+                }
             }
             else
             {
@@ -57,6 +66,13 @@ public class SoundPlayer extends MediaPlayer implements MediaPlayer.OnErrorListe
         {
             e.printStackTrace();
         }
+    }
+
+    // Many of the "MEDIA_ERROR" codes require API level 17 or above
+    @TargetApi(17)
+    private void initializationError()
+    {
+        onError(this, MEDIA_ERROR_UNKNOWN, MEDIA_ERROR_IO);
     }
 
     @Override
