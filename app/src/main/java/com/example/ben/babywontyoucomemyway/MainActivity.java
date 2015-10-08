@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ActionBar bar = getSupportActionBar();
+        if (bar != null)
+            bar.setTitle(R.string.toolbar_title);
 
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
