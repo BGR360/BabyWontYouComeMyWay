@@ -1,16 +1,22 @@
 package com.example.ben.babywontyoucomemyway;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
+
+    Button babyButton, spawButton, gawdamButton, stopButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +38,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
         */
+
+        babyButton = (Button) findViewById(R.id.baby_button);
+        spawButton = (Button) findViewById(R.id.spaw_button);
+        gawdamButton = (Button) findViewById(R.id.gawdam_button);
+        stopButton = (Button) findViewById(R.id.stop_button);
+
+        babyButton.setOnClickListener(this);
+        spawButton.setOnClickListener(this);
+        gawdamButton.setOnClickListener(this);
+        stopButton.setOnClickListener(this);
     }
 
     @Override
@@ -57,5 +73,49 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void playBabyWontYouComeMyWay()
+    {
+        Toast.makeText(this, "Baby Won't You Come My Waaaaaay????1", Toast.LENGTH_SHORT).show();
+    }
+
+    public void playSpaw()
+    {
+        Toast.makeText(this, "SPAW!!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void playGawdam()
+    {
+        Toast.makeText(this, "gawdam-gawdam", Toast.LENGTH_SHORT).show();
+    }
+
+    public void stopAudio()
+    {
+        Toast.makeText(this, "STOP", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        if (v != null)
+        {
+            if (v == babyButton)
+            {
+                playBabyWontYouComeMyWay();
+            }
+            else if (v == spawButton)
+            {
+                playSpaw();
+            }
+            else if (v == gawdamButton)
+            {
+                playGawdam();
+            }
+            else if (v == stopButton)
+            {
+                stopAudio();
+            }
+        }
     }
 }

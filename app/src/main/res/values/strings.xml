@@ -5,4 +5,5 @@
     <string name="baby_button_text">Baby Won\'t You Come My Waaaay</string>
     <string name="spaw_button_text">SPAW!!</string>
     <string name="gawdam_button_text">gawdam-gawdam</string>
+    <string name="stop_button_text">Stop Audio</string>
 </resources>
