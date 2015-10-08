@@ -15,7 +15,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+                                                               MediaPlayer.OnPreparedListener
 {
 
     Button babyButton, spawButton, gawdamButton, stopButton;
@@ -52,9 +53,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gawdamButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
 
-        babyPlayer = new SoundPlayer(this, R.raw.baby);
-        spawPlayer = new SoundPlayer(this, R.raw.SPAW);
-        gawdamPlayer = new SoundPlayer(this, R.raw.gawdam_gawdam);
+        // Don't let them click until the media is loaded
+        babyButton.setClickable(false);
+        spawButton.setClickable(false);
+        gawdamButton.setClickable(false);
+        stopButton.setClickable(false);
+
+        babyPlayer = new SoundPlayer(this, R.raw.baby, this);
+        spawPlayer = new SoundPlayer(this, R.raw.spaw, this);
+        gawdamPlayer = new SoundPlayer(this, R.raw.gawdam_gawdam, this);
     }
 
     @Override
@@ -124,5 +131,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 stopAudio();
             }
         }
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mp)
+    {
+        if (mp == babyPlayer)
+        {
+            babyButton.setClickable(true);
+        }
+        else if (mp == spawPlayer)
+        {
+            spawButton.setClickable(true);
+        }
+        else if (mp == gawdamPlayer)
+        {
+            gawdamButton.setClickable(true);
+        }
+
+        if (!stopButton.isClickable())
+            stopButton.setClickable(true);
     }
 }

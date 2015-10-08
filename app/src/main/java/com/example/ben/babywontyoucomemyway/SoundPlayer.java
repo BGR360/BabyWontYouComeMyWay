@@ -25,8 +25,14 @@ public class SoundPlayer extends MediaPlayer implements MediaPlayer.OnErrorListe
 
     public SoundPlayer(Context context, int resId)
     {
+        this(context, resId, null);
+    }
+
+    public SoundPlayer(Context context, int resId, OnPreparedListener listener)
+    {
         mContext = context;
         mIsInitialized = false;
+        setOnPreparedListener(listener);
         init(resId);
     }
 
